@@ -1,0 +1,7 @@
+import { Router } from 'express';
+
+const routes = new Router();
+
+routes.get('/', (_req, res) => res.send('initial route'));
+
+export default routes;
