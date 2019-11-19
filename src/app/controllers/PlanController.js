@@ -40,16 +40,12 @@ class PlanController {
       price: Yup.number(),
     });
 
-    const inputData = {
-      ...req.params,
-      ...req.body,
-    };
-
-    if (!(await schema.isValid(inputData))) {
+    if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const { id, title } = inputData;
+    const { id } = req.params;
+    const { title } = req.body;
     const plan = await Plan.findByPk(id);
 
     if (!plan) {
@@ -69,14 +65,6 @@ class PlanController {
   }
 
   async delete(req, res) {
-    const schema = Yup.object().shape({
-      id: Yup.number(),
-    });
-
-    if (!(await schema.isValid(req.params))) {
-      return res.status(400).json({ error: 'Validation fails' });
-    }
-
     const { id } = req.params;
     const plan = await Plan.findByPk(id);
 
