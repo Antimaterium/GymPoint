@@ -1,4 +1,4 @@
-# GymPass
+# GymPoint
 
 Rocketseat API challange 02
 
